@@ -1,4 +1,5 @@
 <?php include 'includes/header.php'; ?>
+<?php include 'includes/db.php'; ?>
 
     <main class="container my-5">
         <div class="row">
@@ -41,5 +42,22 @@
             </div>
         </div>
     </main>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+    $stmt = $pdo->prepare('INSERT INTO users (username, email, password) VALUES (:username, :email, :password)');
+
+    try {
+        $stmt->execute(['username' => $username, 'email' => $email, 'password' => $password]);
+        echo '<div class="alert alert-success">Registration successful! You can now <a href="login.php">login</a>.</div>';
+    } catch (PDOException $e) {
+        echo '<div class="alert alert-danger">Error: ' . $e->getMessage() . '</div>';
+    }
+}
+?>
 
 <?php include 'includes/footer.php'; ?>

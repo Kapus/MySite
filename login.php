@@ -1,4 +1,27 @@
 <?php include 'includes/header.php'; ?>
+<?php include 'includes/db.php'; ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
+    $stmt->execute(['username' => $username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        header('Location: profile.php');
+        exit();
+    } else {
+        echo '<div class="alert alert-danger">Invalid username or password.</div>';
+    }
+}
+?>
 
     <main class="container my-5">
         <div class="row">

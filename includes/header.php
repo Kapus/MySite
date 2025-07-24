@@ -1,4 +1,8 @@
-<?php /* header.php moved to includes */ ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,12 +103,21 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.php">Register</a>
-                    </li>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link p-0 me-2" href="profile.php" title="Profile"><i class="bi bi-person-circle fs-5"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.php">Register</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
