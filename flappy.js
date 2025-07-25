@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const bird = {
         x: 60,
         y: canvas.height / 2,
-        width: 34,
-        height: 24,
+        width: 24,
+        height: 16,
         velocity: 0
     };
-    const pipeWidth = 30;
+    const pipeWidth = 18;
     const pipeGap = 140;
     let pipes = [];
     let score = 0;
