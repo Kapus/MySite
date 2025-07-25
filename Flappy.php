@@ -28,14 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['score'])) {
 ?>
 <main class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-12 col-lg-10 mx-auto">
             <div class="card shadow-lg rounded-4 p-4">
-                <h2 class="text-center mb-4">Flappy Bird.</h2>
-                <div class="d-flex flex-column align-items-center" style="background:#222; border-radius:1rem; margin-bottom:2rem; padding:2rem;">
-                    <canvas id="flappyCanvas" width="800" height="500" style="border-radius:1rem; box-shadow:0 0 24px #000;"></canvas>
-                    <button id="restartFlappy" class="btn btn-success btn-lg mt-4" style="display:none;">Restart</button>
-                    <!-- Score display removed as requested -->
-                </div>
+                <h3 class="card-title mb-4 display-4 text-center" style="font-size:2.2rem;">Flappy Bird</h3>
+<canvas id="flappyCanvas" width="800" height="500" style="border-radius:1rem; box-shadow:0 0 24px #000;"></canvas>
+                <button id="restartFlappy" class="btn btn-success btn-lg mt-4" style="display:none;">Restart</button>
             </div>
         </div>
     </div>

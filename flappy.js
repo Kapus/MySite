@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Remove scale factor for game content
     const canvas = document.getElementById('flappyCanvas');
     if (!canvas) {
         alert('Canvas element not found.');
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         velocity: 0
     };
     const pipeWidth = 30;
-    const pipeGap = 200;
+    const pipeGap = 140;
     let pipes = [];
     let score = 0;
     let gameOver = false;
@@ -55,8 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function drawPipes() {
         ctx.fillStyle = '#9D4EDD';
         pipes.forEach(pipe => {
+            // Top pipe: from top to gap
             ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
-            ctx.fillRect(pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - pipe.top - pipeGap);
+            // Bottom pipe: from gap to bottom
+            ctx.fillRect(pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - (pipe.top + pipeGap));
         });
     }
 
@@ -67,8 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function draw() {
-        // Draw matching background color (#222)
-        ctx.fillStyle = '#18122B';
+        // Draw matching background gradient as login form
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, '#18122B');
+        gradient.addColorStop(1, '#2D31FA');
+        ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         drawBird();
         drawPipes();
