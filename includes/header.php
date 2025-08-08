@@ -24,6 +24,9 @@ if (session_status() === PHP_SESSION_NONE) {
             flex-direction: column;
             min-height: 100vh;
             background: linear-gradient(135deg, #18122B 0%, #2D31FA 100%);
+            background-attachment: scroll;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         main {
             flex: 1;
@@ -38,6 +41,9 @@ if (session_status() === PHP_SESSION_NONE) {
         }
         .navbar {
             background: linear-gradient(90deg, #5A189A 0%, #2D31FA 100%) !important;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
         }
         .navbar-brand, .navbar-nav .nav-link {
             color: #e0e0ff !important;
@@ -55,6 +61,10 @@ if (session_status() === PHP_SESSION_NONE) {
         .footer {
             background: linear-gradient(90deg, #5A189A 0%, #2D31FA 100%) !important;
             color: #e0e0ff !important;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
         }
         .footer a {
             color: #A5D7E8 !important;
